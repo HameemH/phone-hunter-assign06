@@ -2,14 +2,19 @@
 const searchPhone = () =>{
     const searchValue = document.getElementById("searchBox");
     const searchText = searchValue.value;
-     
+      //   clearing search field and innerhtml
      searchValue.value = '';
      document.getElementById('searchResult').innerHTML = "";
+     document.getElementById('phoneDetails').innerHTML = "";
+      // fetching api
     const url = ` https://openapi.programming-hero.com/api/phones?search=${searchText}`
     fetch(url)
     .then(response => response.json())
     .then(data => searchResult(data.data))
-}
+};
+
+
+
   //  function defining what to show in seach result 
 const searchResult = (phones) => {
     for(const phone of phones) {
@@ -26,16 +31,15 @@ const searchResult = (phones) => {
             <h5 class="card-title">Phone name: ${phone.phone_name}</h5>
             <h5 class="card-title">Phone Brand: ${phone.brand}</h5>
             <!--   button to show details  -->
-            <a href="#" onclick="phoneDetails('${phone.slug}')" class="btn btn-primary">Details</a>
+            <a href="#" onclick="phoneDetails('${phone.slug}')" class="btn btn-primary w-75">Details</a>
           </div>
         </div>
-    
       `;
       parent.appendChild(div);
-      
     }
   };
 
+   // function for Details button 
  const phoneDetails = (id) => {
      const url = `https://openapi.programming-hero.com/api/phone/${id}`
      fetch(url)
@@ -44,9 +48,10 @@ const searchResult = (phones) => {
 
      
  };
- const Details = data =>{
-    console.log(data.releaseDate)
 
+
+   //function for showing info of details 
+ const Details = data =>{
     if(data.releaseDate == ''){
         document.getElementById("phoneDetails").innerHTML = `
     <div class="card mx-auto shadow" style="width: 18rem;">
@@ -58,10 +63,10 @@ const searchResult = (phones) => {
                 <h5 class="card-title"> Display: ${data.mainFeatures.displaySize}</h5>
                 <h5 class="card-title"> Processor: ${data.mainFeatures.chipSet}</h5>
                 <h5 class="card-title"> Memory: ${data.mainFeatures.memory}</h5>
+                <a href="#" onclick="phoneDetails('')" class="btn btn-primary w-75">Details</a>
               </div>
             </div> `
     }
-
    else{   document.getElementById("phoneDetails").innerHTML = `
     <div class="card mx-auto shadow" style="width: 18rem;">
               <img src="${data.image}" class="card-img-top w-50 mx-auto" alt="...">
@@ -72,6 +77,7 @@ const searchResult = (phones) => {
                 <h5 class="card-title"> Display: ${data.mainFeatures.displaySize}</h5>
                 <h5 class="card-title"> Processor: ${data.mainFeatures.chipSet}</h5>
                 <h5 class="card-title"> Memory: ${data.mainFeatures.memory}</h5>
+                <a href="#" onclick="phoneDetails('')" class="btn btn-primary w-75">Details</a>
               </div>
             </div>  
       `;   }
