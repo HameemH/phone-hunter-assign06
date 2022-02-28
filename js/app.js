@@ -9,7 +9,7 @@ const searchPhone = () =>{
 
 const searchResult = (phones) => {
     for(const phone of phones) {
-        console.log(phone)
+        // console.log(phone)
       const parent = document.getElementById("searchResult");
   
       const div = document.createElement("div");
@@ -30,3 +30,24 @@ const searchResult = (phones) => {
       
     }
   };
+
+ const phoneDetails = (id) => {
+     const url = `https://openapi.programming-hero.com/api/phone/${id}`
+     fetch(url)
+     .then(res => res.json())
+     .then(data => Details(data.data));
+
+     
+ };
+ const Details = data =>{
+     document.getElementById("phoneDetails").innerHTML = `
+      <div class="card mx-auto" style="width: 18rem;">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+              </div> 
+        `; 
+ }
