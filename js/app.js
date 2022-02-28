@@ -6,6 +6,7 @@ const searchPhone = () =>{
      searchValue.value = '';
      document.getElementById('searchResult').innerHTML = "";
      document.getElementById('phoneDetails').innerHTML = "";
+     document.getElementById('sensorDetails').innerHTML=  "";
       // fetching api
     const url = ` https://openapi.programming-hero.com/api/phones?search=${searchText}`
     fetch(url)
@@ -52,6 +53,7 @@ const searchResult = (phones) => {
 
    //function for showing info of details 
  const Details = data =>{
+    document.getElementById('sensorDetails').innerHTML="";
     if(data.releaseDate == ''){
         document.getElementById("phoneDetails").innerHTML = `
     <div class="card mx-auto shadow" style="width: 18rem;">
@@ -63,7 +65,8 @@ const searchResult = (phones) => {
                 <h5 class="card-title"> Display: ${data.mainFeatures.displaySize}</h5>
                 <h5 class="card-title"> Processor: ${data.mainFeatures.chipSet}</h5>
                 <h5 class="card-title"> Memory: ${data.mainFeatures.memory}</h5>
-                <a href="#" onclick="phoneDetails('')" class="btn btn-primary w-75">Details</a>
+                <a href="#" onclick="sensorDetails('${data.mainFeatures.sensors}')" class="btn btn-primary w-75 my-2">Sensors</a>
+                <a href="#" onclick="phoneDetails('')" class="btn btn-primary w-75">Others</a>
               </div>
             </div> `
     }
@@ -77,9 +80,15 @@ const searchResult = (phones) => {
                 <h5 class="card-title"> Display: ${data.mainFeatures.displaySize}</h5>
                 <h5 class="card-title"> Processor: ${data.mainFeatures.chipSet}</h5>
                 <h5 class="card-title"> Memory: ${data.mainFeatures.memory}</h5>
-                <a href="#" onclick="phoneDetails('')" class="btn btn-primary w-75">Details</a>
+                <a href="#" onclick="sensorDetails('${data.mainFeatures.sensors}')" class="btn btn-primary w-75 my-2">Sensors</a>
+                <a href="#" onclick="phoneDetails('')" class="btn btn-primary w-75">Others</a>
               </div>
             </div>  
-      `;   }
+      `;   };
  
+ };
+
+ const sensorDetails= sensors =>{
+    document.getElementById('sensorDetails').innerHTML=`
+    <h1>${sensors}</h1>`
  }
