@@ -1,9 +1,7 @@
 //  taking search value 
 const searchPhone = () =>{
     
-
     const searchValue = document.getElementById("searchBox");
-    
     const searchText = searchValue.value;
       //   clearing search field and innerhtml
      searchValue.value = '';
@@ -18,7 +16,7 @@ const searchPhone = () =>{
         if (data.data == "" ==true) {
             document.getElementById("noResult").style.display = "block";
           } else {
-            searchResult(data.data);
+            searchResult(data.data.slice(0,20));
             document.getElementById("noResult").style.display = "none";
           }
         
@@ -31,9 +29,7 @@ const searchPhone = () =>{
   //  function defining what to show in seach result 
 const searchResult = (phones) => {
     for(const phone of phones) {
-        // console.log(phone)
       const parent = document.getElementById("searchResult");
-  
       const div = document.createElement("div");
       div.classList.add("col-md-4", "my-2")
       div.innerHTML = ` 
@@ -49,6 +45,8 @@ const searchResult = (phones) => {
         </div>
       `;
       parent.appendChild(div);
+      console.log(phone)
+
     }
   };
 
@@ -65,7 +63,7 @@ const searchResult = (phones) => {
 
    //function for showing info of details 
  const Details = data =>{
-    document.getElementById('sensorDetails').innerHTML="";
+    
     if(data.releaseDate == ''){
         document.getElementById("phoneDetails").innerHTML = `
     <div class="card mx-auto shadow" style="width: 18rem;">
