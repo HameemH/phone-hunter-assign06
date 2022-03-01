@@ -1,17 +1,29 @@
 //  taking search value 
 const searchPhone = () =>{
+    
+
     const searchValue = document.getElementById("searchBox");
+    
     const searchText = searchValue.value;
       //   clearing search field and innerhtml
      searchValue.value = '';
      document.getElementById('searchResult').innerHTML = "";
      document.getElementById('phoneDetails').innerHTML = "";
-     document.getElementById('sensorDetails').innerHTML=  "";
+
       // fetching api
-    const url = ` https://openapi.programming-hero.com/api/phones?search=${searchText}`
+    const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`
     fetch(url)
     .then(response => response.json())
-    .then(data => searchResult(data.data))
+    .then(data => {
+        if (data.data == "" ==true) {
+            document.getElementById("noResult").style.display = "block";
+          } else {
+            searchResult(data.data);
+            document.getElementById("noResult").style.display = "none";
+          }
+        
+    });
+       
 };
 
 
@@ -65,8 +77,13 @@ const searchResult = (phones) => {
                 <h5 class="card-title"> Display: ${data.mainFeatures.displaySize}</h5>
                 <h5 class="card-title"> Processor: ${data.mainFeatures.chipSet}</h5>
                 <h5 class="card-title"> Memory: ${data.mainFeatures.memory}</h5>
-                <a href="#" onclick="sensorDetails('${data.mainFeatures.sensors}')" class="btn btn-primary w-75 my-2">Sensors</a>
-                <a href="#" onclick="phoneDetails('')" class="btn btn-primary w-75">Others</a>
+                <h5 class="card-title"> Sensors: ${data.mainFeatures.sensors}</h5>
+                <h5 class="card-title"> Connectivity: ${data.others.WLAN}</h5>
+                <h5 class="card-title"> Bluetooth: ${data.others.Bluetooth}</h5>
+                <h5 class="card-title"> Gps: ${data.others.GPS}</h5>
+                <h5 class="card-title"> NFC: ${data.others.NFC}</h5>
+                <h5 class="card-title"> Radio: ${data.others.Radio}</h5>
+                <h5 class="card-title"> Ports: ${data.others.USB}</h5>
               </div>
             </div> `
     }
@@ -80,15 +97,32 @@ const searchResult = (phones) => {
                 <h5 class="card-title"> Display: ${data.mainFeatures.displaySize}</h5>
                 <h5 class="card-title"> Processor: ${data.mainFeatures.chipSet}</h5>
                 <h5 class="card-title"> Memory: ${data.mainFeatures.memory}</h5>
-                <a href="#" onclick="sensorDetails('${data.mainFeatures.sensors}')" class="btn btn-primary w-75 my-2">Sensors</a>
-                <a href="#" onclick="phoneDetails('')" class="btn btn-primary w-75">Others</a>
+                <h5 class="card-title"> Sensors: ${data.mainFeatures.sensors}</h5>
+                <h5 class="card-title"> Connectivity: ${data.others.WLAN}</h5>
+                <h5 class="card-title"> Bluetooth: ${data.others.Bluetooth}</h5>
+                <h5 class="card-title"> Gps: ${data.others.GPS}</h5>
+                <h5 class="card-title"> NFC: ${data.others.NFC}</h5>
+                <h5 class="card-title"> Ports: ${data.others.USB}</h5>
               </div>
             </div>  
       `;   };
  
  };
 
- const sensorDetails= sensors =>{
-    document.getElementById('sensorDetails').innerHTML=`
-    <h1>${sensors}</h1>`
- }
+
+//   bonus part others info
+  const othersDetails =other =>{
+      console.log(other.WLAN);
+      document.getElementById('othersDetail').innerHTML= `
+      <div class="card" style="width: 18rem;">
+  <div class="card-body">
+    
+    <h6 class="card-subtitle mb-2 text-muted">Connectivity: ${other.WLAN}</h6>
+    <h6 class="card-subtitle mb-2 text-muted">Bluetooth: ${other.Bluetooth}</h6>
+    
+    
+    
+  </div>
+</div>
+      `
+  }
