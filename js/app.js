@@ -63,44 +63,78 @@ const searchResult = (phones) => {
 
    //function for showing info of details 
  const Details = data =>{
-    
-    if(data.releaseDate == ''){
+     if(data.others === undefined && data.releaseDate == ''){
         document.getElementById("phoneDetails").innerHTML = `
     <div class="card mx-auto shadow" style="width: 18rem;">
               <img src="${data.image}" class="card-img-top w-50 mx-auto" alt="...">
               <div class="card-body">
-                <h5 class="card-title">Phone name: ${data.name}</h5>
-                <h5 class="card-title text-danger"> release date not found</h5>
-                <h5 class="card-title "> Storage: ${data.mainFeatures.storage}</h5>
-                <h5 class="card-title"> Display: ${data.mainFeatures.displaySize}</h5>
-                <h5 class="card-title"> Processor: ${data.mainFeatures.chipSet}</h5>
-                <h5 class="card-title"> Memory: ${data.mainFeatures.memory}</h5>
-                <h5 class="card-title"> Sensors: ${data.mainFeatures.sensors}</h5>
-                <h5 class="card-title"> Connectivity: ${data.others.WLAN}</h5>
-                <h5 class="card-title"> Bluetooth: ${data.others.Bluetooth}</h5>
-                <h5 class="card-title"> Gps: ${data.others.GPS}</h5>
-                <h5 class="card-title"> NFC: ${data.others.NFC}</h5>
-                <h5 class="card-title"> Radio: ${data.others.Radio}</h5>
-                <h5 class="card-title"> Ports: ${data.others.USB}</h5>
+              <h5 class="card-title"><span class="fw-bold">Phone name:</span> ${data.name}</h5>
+              <h5 class="card-title text-danger">Realease Info Not Found</h5>
+              <h5 class="card-title "><span class="fw-bold">Storage:</span> ${data.mainFeatures.storage}</h5>
+              <h5 class="card-title"><span class="fw-bold">Display:</span>  ${data.mainFeatures.displaySize}</h5>
+              <h5 class="card-title"><span class="fw-bold">Processor:</span>  ${data.mainFeatures.chipSet}</h5>
+              <h5 class="card-title"><span class="fw-bold">Memory:</span>  ${data.mainFeatures.memory}</h5>
+              <h5 class="card-title"><span class="fw-bold">Sensors</span> : ${data.mainFeatures.sensors}</h5>
+              <h5 class="card-title text-danger">Others Info Not Found</h5>
+                
+                </div>
+                </div>  
+                `
+    }
+    else if(data.releaseDate == ''){
+        document.getElementById("phoneDetails").innerHTML = `
+    <div class="card mx-auto shadow" style="width: 18rem;">
+              <img src="${data.image}" class="card-img-top w-50 mx-auto" alt="...">
+              <div class="card-body">
+              <h5 class="card-title"><span class="fw-bold">Phone name:</span> ${data.name}</h5>
+              <h5 class="card-title text-danger">Realease Info Not Found</h5>
+              <h5 class="card-title "><span class="fw-bold">Storage:</span> ${data.mainFeatures.storage}</h5>
+              <h5 class="card-title"><span class="fw-bold">Display:</span>  ${data.mainFeatures.displaySize}</h5>
+              <h5 class="card-title"><span class="fw-bold">Processor:</span>  ${data.mainFeatures.chipSet}</h5>
+              <h5 class="card-title"><span class="fw-bold">Memory:</span>  ${data.mainFeatures.memory}</h5>
+              <h5 class="card-title"><span class="fw-bold">Sensors</span> : ${data.mainFeatures.sensors}</h5>
+              <h5 class="card-title"><span class="fw-bold">Connectivity:</span>  ${data.others.WLAN}</h5>
+              <h5 class="card-title"><span class="fw-bold">Bluetooth</span> : ${data.others.Bluetooth}</h5>
+              <h5 class="card-title"><span class="fw-bold">Gps:</span> Gps: ${data.others.GPS}</h5>
+              <h5 class="card-title"><span class="fw-bold">NFC:</span>  ${data.others.NFC}</h5>
+              <h5 class="card-title"><span class="fw-bold">Ports:</span>  ${data.others.USB}</h5>
               </div>
             </div> `
+    }
+    else if(data.others === undefined ){
+        document.getElementById("phoneDetails").innerHTML = `
+    <div class="card mx-auto shadow" style="width: 18rem;">
+              <img src="${data.image}" class="card-img-top w-50 mx-auto" alt="...">
+              <div class="card-body">
+              <h5 class="card-title"><span class="fw-bold">Phone name:</span> ${data.name}</h5>
+              <h5 class="card-title "> ${data.releaseDate}</h5>
+              <h5 class="card-title "><span class="fw-bold">Storage:</span> ${data.mainFeatures.storage}</h5>
+              <h5 class="card-title"><span class="fw-bold">Display:</span>  ${data.mainFeatures.displaySize}</h5>
+              <h5 class="card-title"><span class="fw-bold">Processor:</span>  ${data.mainFeatures.chipSet}</h5>
+              <h5 class="card-title"><span class="fw-bold">Memory:</span>  ${data.mainFeatures.memory}</h5>
+              <h5 class="card-title"><span class="fw-bold">Sensors</span> : ${data.mainFeatures.sensors}</h5>
+              <h5 class="card-title text-danger">Others Info Not Found</h5>
+                
+                </div>
+                </div>  
+                `
     }
    else{   document.getElementById("phoneDetails").innerHTML = `
     <div class="card mx-auto shadow" style="width: 18rem;">
               <img src="${data.image}" class="card-img-top w-50 mx-auto" alt="...">
               <div class="card-body">
-                <h5 class="card-title">Phone name: ${data.name}</h5>
+                <h5 class="card-title"><span class="fw-bold">Phone name:</span> ${data.name}</h5>
                 <h5 class="card-title "> ${data.releaseDate}</h5>
-                <h5 class="card-title "> Storage: ${data.mainFeatures.storage}</h5>
-                <h5 class="card-title"> Display: ${data.mainFeatures.displaySize}</h5>
-                <h5 class="card-title"> Processor: ${data.mainFeatures.chipSet}</h5>
-                <h5 class="card-title"> Memory: ${data.mainFeatures.memory}</h5>
-                <h5 class="card-title"> Sensors: ${data.mainFeatures.sensors}</h5>
-                <h5 class="card-title"> Connectivity: ${data.others.WLAN}</h5>
-                <h5 class="card-title"> Bluetooth: ${data.others.Bluetooth}</h5>
-                <h5 class="card-title"> Gps: ${data.others.GPS}</h5>
-                <h5 class="card-title"> NFC: ${data.others.NFC}</h5>
-                <h5 class="card-title"> Ports: ${data.others.USB}</h5>
+                <h5 class="card-title "><span class="fw-bold">Storage:</span> ${data.mainFeatures.storage}</h5>
+                <h5 class="card-title"><span class="fw-bold">Display:</span>  ${data.mainFeatures.displaySize}</h5>
+                <h5 class="card-title"><span class="fw-bold">Processor:</span>  ${data.mainFeatures.chipSet}</h5>
+                <h5 class="card-title"><span class="fw-bold">Memory:</span>  ${data.mainFeatures.memory}</h5>
+                <h5 class="card-title"><span class="fw-bold">Sensors</span> : ${data.mainFeatures.sensors}</h5>
+                <h5 class="card-title"><span class="fw-bold">Connectivity:</span>  ${data.others.WLAN}</h5>
+                <h5 class="card-title"><span class="fw-bold">Bluetooth</span> : ${data.others.Bluetooth}</h5>
+                <h5 class="card-title"><span class="fw-bold">Gps:</span> Gps: ${data.others.GPS}</h5>
+                <h5 class="card-title"><span class="fw-bold">NFC:</span>  ${data.others.NFC}</h5>
+                <h5 class="card-title"><span class="fw-bold">Ports:</span>  ${data.others.USB}</h5>
               </div>
             </div>  
       `;   };
