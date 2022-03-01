@@ -15,7 +15,10 @@ const searchPhone = () =>{
     .then(data => {
         if (data.data == "" ==true) {
             document.getElementById("noResult").style.display = "block";
-          } else {
+          } 
+          
+          else {
+            //   bonus part showing 20 search results 
             searchResult(data.data.slice(0,20));
             document.getElementById("noResult").style.display = "none";
           }
@@ -63,10 +66,11 @@ const searchResult = (phones) => {
 
    //function for showing info of details 
  const Details = data =>{
+    //  if the date and others info both are not available
      if(data.others === undefined && data.releaseDate == ''){
         document.getElementById("phoneDetails").innerHTML = `
     <div class="card mx-auto shadow" style="width: 18rem;">
-              <img src="${data.image}" class="card-img-top w-50 mx-auto" alt="...">
+              <img src="${data.image}" class="card-img-top w-50 mx-auto mt-2" alt="...">
               <div class="card-body">
               <h5 class="card-title"><span class="fw-bold">Phone name:</span> ${data.name}</h5>
               <h5 class="card-title text-danger">Realease Info Not Found</h5>
@@ -74,6 +78,8 @@ const searchResult = (phones) => {
               <h5 class="card-title"><span class="fw-bold">Display:</span>  ${data.mainFeatures.displaySize}</h5>
               <h5 class="card-title"><span class="fw-bold">Processor:</span>  ${data.mainFeatures.chipSet}</h5>
               <h5 class="card-title"><span class="fw-bold">Memory:</span>  ${data.mainFeatures.memory}</h5>
+             
+                               <!--bonus part  -->
               <h5 class="card-title"><span class="fw-bold">Sensors</span> : ${data.mainFeatures.sensors}</h5>
               <h5 class="card-title text-danger">Others Info Not Found</h5>
                 
@@ -81,10 +87,13 @@ const searchResult = (phones) => {
                 </div>  
                 `
     }
+        //  if the date  are not available
+
     else if(data.releaseDate == ''){
+        
         document.getElementById("phoneDetails").innerHTML = `
     <div class="card mx-auto shadow" style="width: 18rem;">
-              <img src="${data.image}" class="card-img-top w-50 mx-auto" alt="...">
+              <img src="${data.image}" class="card-img-top w-50 mx-auto mt-2" alt="...">
               <div class="card-body">
               <h5 class="card-title"><span class="fw-bold">Phone name:</span> ${data.name}</h5>
               <h5 class="card-title text-danger">Realease Info Not Found</h5>
@@ -92,6 +101,9 @@ const searchResult = (phones) => {
               <h5 class="card-title"><span class="fw-bold">Display:</span>  ${data.mainFeatures.displaySize}</h5>
               <h5 class="card-title"><span class="fw-bold">Processor:</span>  ${data.mainFeatures.chipSet}</h5>
               <h5 class="card-title"><span class="fw-bold">Memory:</span>  ${data.mainFeatures.memory}</h5>
+
+              
+                               <!--bonus part  -->
               <h5 class="card-title"><span class="fw-bold">Sensors</span> : ${data.mainFeatures.sensors}</h5>
               <h5 class="card-title"><span class="fw-bold">Connectivity:</span>  ${data.others.WLAN}</h5>
               <h5 class="card-title"><span class="fw-bold">Bluetooth</span> : ${data.others.Bluetooth}</h5>
@@ -101,10 +113,12 @@ const searchResult = (phones) => {
               </div>
             </div> `
     }
+        //  if others info are not available
+
     else if(data.others === undefined ){
         document.getElementById("phoneDetails").innerHTML = `
     <div class="card mx-auto shadow" style="width: 18rem;">
-              <img src="${data.image}" class="card-img-top w-50 mx-auto" alt="...">
+              <img src="${data.image}" class="card-img-top w-50 mx-auto mt-2" alt="...">
               <div class="card-body">
               <h5 class="card-title"><span class="fw-bold">Phone name:</span> ${data.name}</h5>
               <h5 class="card-title "> ${data.releaseDate}</h5>
@@ -112,6 +126,9 @@ const searchResult = (phones) => {
               <h5 class="card-title"><span class="fw-bold">Display:</span>  ${data.mainFeatures.displaySize}</h5>
               <h5 class="card-title"><span class="fw-bold">Processor:</span>  ${data.mainFeatures.chipSet}</h5>
               <h5 class="card-title"><span class="fw-bold">Memory:</span>  ${data.mainFeatures.memory}</h5>
+                              
+              
+                                 <!--bonus part  -->
               <h5 class="card-title"><span class="fw-bold">Sensors</span> : ${data.mainFeatures.sensors}</h5>
               <h5 class="card-title text-danger">Others Info Not Found</h5>
                 
@@ -121,7 +138,7 @@ const searchResult = (phones) => {
     }
    else{   document.getElementById("phoneDetails").innerHTML = `
     <div class="card mx-auto shadow" style="width: 18rem;">
-              <img src="${data.image}" class="card-img-top w-50 mx-auto" alt="...">
+              <img src="${data.image}" class="card-img-top w-50 mx-auto mt-2" alt="...">
               <div class="card-body">
                 <h5 class="card-title"><span class="fw-bold">Phone name:</span> ${data.name}</h5>
                 <h5 class="card-title "> ${data.releaseDate}</h5>
@@ -129,6 +146,9 @@ const searchResult = (phones) => {
                 <h5 class="card-title"><span class="fw-bold">Display:</span>  ${data.mainFeatures.displaySize}</h5>
                 <h5 class="card-title"><span class="fw-bold">Processor:</span>  ${data.mainFeatures.chipSet}</h5>
                 <h5 class="card-title"><span class="fw-bold">Memory:</span>  ${data.mainFeatures.memory}</h5>
+                
+                
+                                <!--bonus part  -->
                 <h5 class="card-title"><span class="fw-bold">Sensors</span> : ${data.mainFeatures.sensors}</h5>
                 <h5 class="card-title"><span class="fw-bold">Connectivity:</span>  ${data.others.WLAN}</h5>
                 <h5 class="card-title"><span class="fw-bold">Bluetooth</span> : ${data.others.Bluetooth}</h5>
@@ -141,20 +161,3 @@ const searchResult = (phones) => {
  
  };
 
-
-//   bonus part others info
-  const othersDetails =other =>{
-      console.log(other.WLAN);
-      document.getElementById('othersDetail').innerHTML= `
-      <div class="card" style="width: 18rem;">
-  <div class="card-body">
-    
-    <h6 class="card-subtitle mb-2 text-muted">Connectivity: ${other.WLAN}</h6>
-    <h6 class="card-subtitle mb-2 text-muted">Bluetooth: ${other.Bluetooth}</h6>
-    
-    
-    
-  </div>
-</div>
-      `
-  }
